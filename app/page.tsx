@@ -2,27 +2,33 @@
 import { useState } from "react";
 
 const casinoGames = [
-  {
-    name: "Sweet Bonanza",
-    img: "https://cdn.pixabay.com/photo/2017/01/31/13/14/casino-2028252_1280.png"
-  },
-  {
-    name: "Aviator",
-    img: "https://cdn.pixabay.com/photo/2016/11/29/09/32/slot-machine-1869644_1280.jpg"
-  },
-  {
-    name: "Lightning Roulette",
-    img: "https://cdn.pixabay.com/photo/2017/01/31/13/14/roulette-2028248_1280.png"
-  },
-  {
-    name: "Book of Ra",
-    img: "https://cdn.pixabay.com/photo/2017/01/31/13/14/casino-2028251_1280.png"
-  }
+  { name: "Sweet Bonanza", img: "https://cdn.pixabay.com/photo/2017/01/31/13/14/casino-2028252_1280.png" },
+  { name: "Aviator", img: "https://cdn.pixabay.com/photo/2016/11/29/09/32/slot-machine-1869644_1280.jpg" },
+  { name: "Lightning Roulette", img: "https://cdn.pixabay.com/photo/2017/01/31/13/14/roulette-2028248_1280.png" },
+  { name: "Book of Ra", img: "https://cdn.pixabay.com/photo/2017/01/31/13/14/casino-2028251_1280.png" },
+  { name: "Gates of Olympus", img: "https://cdn.pixabay.com/photo/2017/01/31/13/14/casino-2028250_1280.png" },
+  { name: "Crazy Time", img: "https://cdn.pixabay.com/photo/2017/01/31/13/14/casino-2028249_1280.png" },
+  { name: "Blackjack", img: "https://cdn.pixabay.com/photo/2017/01/31/13/14/casino-2028247_1280.png" },
+  { name: "Mega Wheel", img: "https://cdn.pixabay.com/photo/2017/01/31/13/14/casino-2028246_1280.png" }
+];
+
+const liveMatches = [
+  { sport: "Futbol", teams: "Galatasaray vs Fenerbahçe", score: "2-1", minute: "78'", odds: "1.85", img: "https://cdn.pixabay.com/photo/2016/11/29/09/32/football-1869639_1280.jpg" },
+  { sport: "Basketbol", teams: "Efes vs Beşiktaş", score: "67-65", minute: "4.Çeyrek", odds: "2.10", img: "https://cdn.pixabay.com/photo/2016/11/29/09/32/basketball-1869640_1280.jpg" },
+  { sport: "Tenis", teams: "Nadal vs Djokovic", score: "6-4, 3-6", minute: "2.Set", odds: "1.60", img: "https://cdn.pixabay.com/photo/2016/11/29/09/32/tennis-1869642_1280.jpg" }
+];
+
+const paymentMethods = [
+  { name: "Papara", img: "https://upload.wikimedia.org/wikipedia/commons/6/6b/Papara_logo.png" },
+  { name: "Payfix", img: "https://www.payfix.com.tr/assets/img/logo.svg" },
+  { name: "Paycell", img: "https://upload.wikimedia.org/wikipedia/commons/2/2a/Paycell_logo.png" },
+  { name: "Havale/EFT", img: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png" },
+  { name: "Kripto", img: "https://cdn-icons-png.flaticon.com/512/825/825519.png" },
+  { name: "Payco", img: "https://www.payco.com.tr/assets/img/logo.svg" }
 ];
 
 export default function Home() {
   const [modal, setModal] = useState<"login" | "register" | null>(null);
-
   return (
     <main style={{
       minHeight: '100vh',
@@ -81,146 +87,76 @@ export default function Home() {
         </nav>
       </header>
 
-      {/* Modal */}
-      {modal && (
-        <div style={{
-          position: "fixed",
-          top: 0, left: 0, right: 0, bottom: 0,
-          background: "rgba(0,0,0,0.7)",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          zIndex: 1000
-        }}>
-          <div style={{
-            background: "#23272A",
-            padding: 32,
-            borderRadius: 16,
-            minWidth: 320,
-            boxShadow: "0 0 24px #00FF7F44"
-          }}>
-            <h2 style={{ color: "#FFD700", marginBottom: 16 }}>
-              {modal === "login" ? "Giriş Yap" : "Kayıt Ol"}
-            </h2>
-            <form
-              onSubmit={e => {
-                e.preventDefault();
-                alert("Demo: Form gönderildi!");
-                setModal(null);
-              }}
-              style={{ display: "flex", flexDirection: "column", gap: 12 }}
-            >
-              {modal === "register" && (
-                <input
-                  type="text"
-                  placeholder="Kullanıcı Adı"
-                  style={{ padding: 10, borderRadius: 6, border: "none", background: "#181A20", color: "#fff" }}
-                  required
-                />
-              )}
-              <input
-                type="email"
-                placeholder="E-posta"
-                style={{ padding: 10, borderRadius: 6, border: "none", background: "#181A20", color: "#fff" }}
-                required
-              />
-              <input
-                type="password"
-                placeholder="Şifre"
-                style={{ padding: 10, borderRadius: 6, border: "none", background: "#181A20", color: "#fff" }}
-                required
-              />
-              <button
-                type="submit"
-                style={{
-                  marginTop: 8,
-                  padding: "10px 0",
-                  background: "#00FF7F",
-                  color: "#23272A",
-                  fontWeight: 700,
-                  border: "none",
-                  borderRadius: 8,
-                  fontSize: "1rem"
-                }}
-              >
-                {modal === "login" ? "Giriş Yap" : "Kayıt Ol"}
-              </button>
-              <button
-                type="button"
-                onClick={() => setModal(null)}
-                style={{
-                  marginTop: 8,
-                  padding: "8px 0",
-                  background: "#FFD700",
-                  color: "#23272A",
-                  fontWeight: 700,
-                  border: "none",
-                  borderRadius: 8,
-                  fontSize: "1rem"
-                }}
-              >
-                Kapat
-              </button>
-            </form>
-          </div>
-        </div>
-      )}
-
-      {/* Spor Bannerı */}
+      {/* Yatırım Yöntemleri */}
       <div style={{
-        width: "100%",
-        maxWidth: 1200,
         margin: "32px auto 0 auto",
-        borderRadius: 18,
-        overflow: "hidden",
-        boxShadow: "0 0 32px #00FF7F22",
-        position: "relative"
+        maxWidth: 1200,
+        display: "flex",
+        gap: 24,
+        flexWrap: "wrap",
+        justifyContent: "center"
       }}>
-        <img
-          src="https://images.unsplash.com/photo-1505843276871-1b43c5c9b6c6?auto=format&fit=crop&w=1200&q=80"
-          alt="Canlı Spor"
-          style={{ width: "100%", height: 220, objectFit: "cover", filter: "brightness(0.7)" }}
-        />
-        <div style={{
-          position: "absolute",
-          top: 0, left: 0, right: 0, bottom: 0,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          color: "#FFD700",
-          fontSize: "2rem",
-          fontWeight: 900,
-          textShadow: "0 0 16px #00FF7F, 0 0 8px #FFD700"
-        }}>
-          ⚽ CANLI FUTBOL MAÇLARI
-        </div>
+        {paymentMethods.map((method, i) => (
+          <div key={i} style={{
+            background: "#23272A",
+            borderRadius: 14,
+            padding: 24,
+            minWidth: 180,
+            maxWidth: 200,
+            boxShadow: "0 0 12px #FFD70044",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center"
+          }}>
+            <img src={method.img} alt={method.name} style={{ width: 60, height: 60, objectFit: "contain", background: "#fff", borderRadius: 8, marginBottom: 12 }} />
+            <h3 style={{ color: "#FFD700", margin: 0, fontWeight: 700, fontSize: "1.1rem" }}>{method.name}</h3>
+            <button style={{
+              marginTop: 12,
+              padding: "8px 18px",
+              background: "#00FF7F",
+              color: "#23272A",
+              fontWeight: 700,
+              border: "none",
+              borderRadius: 8,
+              fontSize: "1rem"
+            }}>Yatırım Yap</button>
+          </div>
+        ))}
       </div>
 
-      {/* Bonus Slider */}
+      {/* Canlı Maçlar */}
       <div style={{
-        margin: "32px auto 0 auto",
-        maxWidth: 900,
-        background: "linear-gradient(90deg, #00FF7F 0%, #FFD700 100%)",
-        borderRadius: 16,
-        boxShadow: "0 0 24px #FFD70044",
-        padding: 24,
+        margin: "40px auto 0 auto",
+        maxWidth: 1200,
         display: "flex",
-        alignItems: "center",
-        gap: 24
+        gap: 32,
+        flexWrap: "wrap",
+        justifyContent: "center"
       }}>
-        <img
-          src="https://cdn.pixabay.com/photo/2017/01/31/13/14/casino-2028252_1280.png"
-          alt="Bonus"
-          style={{ width: 80, height: 80, borderRadius: 12, background: "#fff" }}
-        />
-        <div>
-          <h2 style={{ color: "#23272A", fontWeight: 900, fontSize: "1.3rem", margin: 0 }}>
-            Bugüne Özel %30 Çevrimsiz Bonus!
-          </h2>
-          <p style={{ color: "#23272A", margin: 0, fontWeight: 600 }}>
-            Sadece Gurmebet'te, anında hesabında!
-          </p>
-        </div>
+        {liveMatches.map((match, i) => (
+          <div key={i} style={{
+            width: 340,
+            background: "#181A20",
+            borderRadius: 16,
+            boxShadow: "0 0 16px #00FF7F22",
+            overflow: "hidden",
+            display: "flex",
+            alignItems: "center",
+            marginBottom: 12
+          }}>
+            <img src={match.img} alt={match.sport} style={{ width: 90, height: 90, objectFit: "cover" }} />
+            <div style={{ padding: 16, flex: 1 }}>
+              <h4 style={{ color: "#FFD700", margin: 0, fontWeight: 700 }}>{match.teams}</h4>
+              <p style={{ color: "#00FF7F", margin: "4px 0 0 0", fontWeight: 600 }}>{match.sport} • {match.minute}</p>
+              <p style={{ color: "#fff", margin: "4px 0 0 0" }}>Skor: <b>{match.score}</b></p>
+              <p style={{ color: "#FFD700", margin: "4px 0 0 0" }}>Oran: <b>{match.odds}</b></p>
+            </div>
+            <div style={{ padding: 8 }}>
+              <span style={{ color: "#00FF7F", fontWeight: 900, fontSize: "1.3rem" }}>●</span>
+              <div style={{ color: "#fff", fontSize: "0.8rem" }}>Canlı</div>
+            </div>
+          </div>
+        ))}
       </div>
 
       {/* Casino Oyun Kartları */}
